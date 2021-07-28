@@ -1,0 +1,334 @@
+{
+  "intents": [
+    {
+      "intent": "agreeing",
+      "examples": [
+        {
+          "text": "alright"
+        },
+        {
+          "text": "go ahead"
+        },
+        {
+          "text": "ok"
+        },
+        {
+          "text": "okay"
+        },
+        {
+          "text": "show me"
+        },
+        {
+          "text": "Yes"
+        },
+        {
+          "text": "yup"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "greeting",
+      "examples": [
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hey"
+        },
+        {
+          "text": "Hi"
+        },
+        {
+          "text": "Hola"
+        },
+        {
+          "text": "Welcome"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "jokes",
+      "examples": [
+        {
+          "text": "another joke"
+        },
+        {
+          "text": "joke"
+        },
+        {
+          "text": "jokes"
+        },
+        {
+          "text": "tell me a joke"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "no",
+      "examples": [
+        {
+          "text": "no"
+        },
+        {
+          "text": "nope"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "services",
+      "examples": [
+        {
+          "text": "get back to services"
+        },
+        {
+          "text": "how you can help me"
+        },
+        {
+          "text": "my services"
+        },
+        {
+          "text": "service"
+        },
+        {
+          "text": "what is your services?"
+        },
+        {
+          "text": "your service"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "website",
+      "examples": [
+        {
+          "text": "tell me about the website"
+        },
+        {
+          "text": "website"
+        },
+        {
+          "text": "what this website do?"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_3_1627229336822",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "services",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I can tell you about the website and I can tell you a joke! what do you want me to do?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#services",
+      "dialog_node": "node_10_1627226852409",
+      "previous_sibling": "node_6_1627226352713"
+    },
+    {
+      "type": "standard",
+      "title": "website",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "This website is a control panel interface for robot directions. would you like to get back to the service?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1627226852409",
+      "conditions": "#website",
+      "dialog_node": "node_2_1627227272548"
+    },
+    {
+      "type": "standard",
+      "title": "greeting",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi, would you like to see my services?"
+              },
+              {
+                "text": "Hello, would you like to know my services? "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#greeting",
+      "dialog_node": "node_3_1627139983021",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "no",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok"
+              },
+              {
+                "text": "alright"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#no",
+      "dialog_node": "node_3_1627229336822",
+      "previous_sibling": "node_10_1627226852409"
+    },
+    {
+      "type": "standard",
+      "title": "agreeing",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Cool! please write Services "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#agreeing",
+      "dialog_node": "node_6_1627226352713",
+      "previous_sibling": "node_3_1627139983021"
+    },
+    {
+      "type": "standard",
+      "title": "jokes",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is a little bear with no teeth is called?\nA gummy bear. would you like to read another joke or get back to services ?"
+              },
+              {
+                "text": "What kind of exercise do lazy people do? Diddly-squats. would you like to read another joke or get back to services ?"
+              },
+              {
+                "text": "What do you call bears with no ears? B.  would you like to read another joke or get back to services ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "parent": "node_10_1627226852409",
+      "conditions": "#jokes",
+      "dialog_node": "node_8_1627227537127",
+      "previous_sibling": "node_2_1627227272548"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "Speaking",
+  "language": "en",
+  "description": ""
+}
